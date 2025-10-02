@@ -1,0 +1,84 @@
+---
+import type { SEOProps } from '@/lib/seo';
+import { generateSEO, generateWebsiteSchema } from '@/lib/seo';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import '../styles/globals.css';
+
+interface Props {
+  seo: SEOProps;
+  currentPage?: string;
+  noLayout?: boolean;
+}
+
+const { seo, currentPage, noLayout = false } = Astro.props;
+
+const seoData = generateSEO(seo);
+const websiteSchema = generateWebsiteSchema();
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={seoData.description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO -->
+    <title>{seoData.title}</title>
+    {seoData.canonical && <link rel="canonical" href={seoData.canonical} />}
+    {seoData.noindex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={seoData.openGraph.title} />
+    <meta property="og:description" content={seoData.openGraph.description} />
+    <meta property="og:type" content={seoData.openGraph.type} />
+    <meta property="og:url" content={seoData.openGraph.url} />
+    <meta property="og:site_name" content={seoData.openGraph.siteName} />
+    {seoData.openGraph.images.map((image) => (
+      <>
+        <meta property="og:image" content={image.url} />
+        <meta property="og:image:width" content={image.width.toString()} />
+        <meta property="og:image:height" content={image.height.toString()} />
+        <meta property="og:image:alt" content={image.alt} />
+      </>
+    ))}
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content={seoData.twitter.card} />
+    <meta name="twitter:title" content={seoData.twitter.title} />
+    <meta name="twitter:description" content={seoData.twitter.description} />
+    <meta name="twitter:image" content={seoData.twitter.image} />
+    <meta name="twitter:creator" content={seoData.twitter.creator} />
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+  </head>
+  <body>
+    {!noLayout && <Header currentPage={currentPage} />}
+    
+    <main id="main-content" class={noLayout ? '' : 'min-h-screen'}>
+      <slot />
+    </main>
+    
+    {!noLayout && <Footer />}
+    
+    <!-- Plausible Analytics (optional) -->
+    {import.meta.env.PLAUSIBLE_DOMAIN && (
+      <script
+        defer
+        data-domain={import.meta.env.PLAUSIBLE_DOMAIN}
+        src="https://plausible.io/js/script.js"
+      />
+    )}
+  </body>
+</html>

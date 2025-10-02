@@ -1,0 +1,37 @@
+---
+interface Props {
+  testimonial: {
+    quote: string;
+    author: string;
+    title: string;
+    image?: string;
+  };
+  className?: string;
+}
+
+const { testimonial, className = '' } = Astro.props;
+---
+
+<div class={`card p-6 ${className}`}>
+  <blockquote class="mb-4">
+    <p class="text-muted-700 italic">"{testimonial.quote}"</p>
+  </blockquote>
+  
+  <div class="flex items-center space-x-3">
+    {testimonial.image && (
+      <img
+        src={testimonial.image}
+        alt={testimonial.author}
+        class="w-10 h-10 rounded-full object-cover"
+        loading="lazy"
+      />
+    )}
+    <div>
+      <p class="font-medium text-ink-900">{testimonial.author}</p>
+      <p class="text-sm text-muted-500">{testimonial.title}</p>
+    </div>
+  </div>
+</div>
+
+
+

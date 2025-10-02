@@ -1,0 +1,110 @@
+---
+import { generateSEO } from '@/lib/seo';
+import SimplePage from '@/layouts/SimplePage.astro';
+import PageHero from '@/components/PageHero.astro';
+import Section from '@/components/Section.astro';
+
+const seo = generateSEO({
+  title: 'Terms of Service',
+  description: 'Terms of service for Dr Adrian Laurence\'s website. Learn about the terms and conditions for using our educational content and services.',
+});
+---
+
+<SimplePage seo={seo}>
+  <PageHero
+    title="Terms of Service"
+    kicker="Terms and conditions for using this website and its educational content."
+  />
+
+  <Section>
+    <div class="max-w-4xl mx-auto">
+      <div class="prose prose-lg max-w-none">
+        <p class="text-muted-600 mb-8">
+          <strong>Last updated:</strong> {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+
+        <h2>Acceptance of Terms</h2>
+        <p>
+          By accessing and using the website dradrianlaurence.com (the "Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+        </p>
+
+        <h2>Educational Content Only</h2>
+        <p>
+          <strong>Important:</strong> All content on this website is for educational purposes only. This website does not provide personalized medical advice, diagnosis, or treatment. The information provided is not a substitute for professional medical advice, diagnosis, or treatment.
+        </p>
+        <p>
+          You should not use this information to diagnose or treat a health problem or disease, or prescribe any medication. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
+        </p>
+
+        <h2>No Doctor-Patient Relationship</h2>
+        <p>
+          The use of this website does not create a doctor-patient relationship between you and Dr Adrian Laurence. Any communication through this website or email does not establish a professional relationship or create any duty of care.
+        </p>
+
+        <h2>Emergency Situations</h2>
+        <p>
+          If you think you may have a medical emergency, call your doctor, go to the emergency department of your local hospital, or contact your local emergency services immediately.
+        </p>
+
+        <h2>Use License</h2>
+        <p>
+          Permission is granted to temporarily download one copy of the materials on Dr Adrian Laurence's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+        </p>
+        <ul>
+          <li>modify or copy the materials</li>
+          <li>use the materials for any commercial purpose or for any public display (commercial or non-commercial)</li>
+          <li>attempt to decompile or reverse engineer any software contained on the website</li>
+          <li>remove any copyright or other proprietary notations from the materials</li>
+        </ul>
+
+        <h2>Disclaimer</h2>
+        <p>
+          The materials on Dr Adrian Laurence's website are provided on an 'as is' basis. Dr Adrian Laurence makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+        </p>
+        <p>
+          Further, Dr Adrian Laurence does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.
+        </p>
+
+        <h2>Limitations</h2>
+        <p>
+          In no event shall Dr Adrian Laurence or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Dr Adrian Laurence's website, even if Dr Adrian Laurence or an authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
+        </p>
+
+        <h2>Accuracy of Materials</h2>
+        <p>
+          The materials appearing on Dr Adrian Laurence's website could include technical, typographical, or photographic errors. Dr Adrian Laurence does not warrant that any of the materials on its website are accurate, complete, or current. Dr Adrian Laurence may make changes to the materials contained on its website at any time without notice. However, Dr Adrian Laurence does not make any commitment to update the materials.
+        </p>
+
+        <h2>Links</h2>
+        <p>
+          Dr Adrian Laurence has not reviewed all of the sites linked to our website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Dr Adrian Laurence of the site. Use of any such linked website is at the user's own risk.
+        </p>
+
+        <h2>Modifications</h2>
+        <p>
+          Dr Adrian Laurence may revise these terms of service for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.
+        </p>
+
+        <h2>Governing Law</h2>
+        <p>
+          These terms and conditions shall be governed by and construed in accordance with applicable international law.
+        </p>
+
+        <h2>Contact Information</h2>
+        <p>
+          If you have any questions about these Terms of Service, please contact us at:
+        </p>
+        <p>
+          Email: hello@dradrianlaurence.com<br>
+          Website: https://dradrianlaurence.com
+        </p>
+
+        <h2>Severability</h2>
+        <p>
+          If any provision of these terms is deemed invalid or unenforceable by a court, the remaining provisions shall remain in full force and effect.
+        </p>
+      </div>
+    </div>
+  </Section>
+</SimplePage>
+

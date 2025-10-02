@@ -1,0 +1,44 @@
+---
+import { generateSEO } from '@/lib/seo';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { NEWSLETTER_URL } from '@/lib/schema';
+
+const seo = generateSEO({
+  title: 'Page Not Found',
+  description: 'The page you are looking for could not be found.',
+  noIndex: true,
+});
+---
+
+<BaseLayout seo={seo} noLayout={true}>
+  <div class="min-h-screen flex items-center justify-center bg-bg">
+    <div class="max-w-md mx-auto text-center px-6">
+      <div class="mb-8">
+        <h1 class="text-6xl font-bold text-primary-500 mb-4">404</h1>
+        <h2 class="font-display font-semibold text-2xl mb-4">Page Not Found</h2>
+        <p class="text-muted-600 mb-8">
+          Sorry, we couldn't find the page you're looking for. It might have been moved, deleted, or the URL might be incorrect.
+        </p>
+      </div>
+      
+      <div class="space-y-4">
+        <a href="/" class="btn-primary block">
+          Go to Homepage
+        </a>
+        <a href={NEWSLETTER_URL} class="btn-secondary block" target="_blank" rel="noopener noreferrer">
+          Read the Newsletter
+        </a>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-muted-200">
+        <p class="text-sm text-muted-500">
+          <strong>Educational content only.</strong> Not a substitute for your own clinician. 
+          No personalised medical advice is provided on this site.
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+
+

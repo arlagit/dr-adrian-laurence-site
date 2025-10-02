@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import { generateSEO } from '@/lib/seo';
+import { getRelatedPosts } from '@/lib/schema';
+import BlogLayout from '@/layouts/BlogLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Get related posts
+const allPosts = await getCollection('blog');
+const relatedPosts = getRelatedPosts(post, allPosts);
+
+const seo = generateSEO({
+  title: post.data.title,
+  description: post.data.summary,
+  canonical: `/blog/${post.slug}`,
+  noIndex: post.data.noIndex || false,
+  ogImage: post.data.heroImage,
+  ogType: 'article',
+  publishedTime: post.data.publishedAt.toISOString(),
+  modifiedTime: post.data.updatedAt?.toISOString(),
+  author: 'Dr Adrian Laurence',
+  tags: post.data.tags || [],
+});
+---
+
+<BlogLayout seo={seo} post={post} relatedPosts={relatedPosts}>
+  <Content />
+</BlogLayout>
+
+
+

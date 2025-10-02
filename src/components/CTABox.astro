@@ -1,0 +1,73 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ctaHref: string;
+  ctaLabel: string;
+  ctaSecondary?: {
+    href: string;
+    label: string;
+  };
+  variant?: 'primary' | 'accent' | 'white';
+  className?: string;
+}
+
+const {
+  title,
+  description,
+  ctaHref,
+  ctaLabel,
+  ctaSecondary,
+  variant = 'primary',
+  className = '',
+} = Astro.props;
+
+const variantClasses = {
+  primary: 'bg-primary-500 text-white',
+  accent: 'bg-accent-500 text-ink-900',
+  white: 'bg-white text-ink-900 border border-muted-200',
+};
+---
+
+<div class={`${variantClasses[variant]} rounded-3xl p-8 md:p-12 text-center ${className}`}>
+  <h2 class="font-display font-semibold text-2xl md:text-3xl mb-4">
+    {title}
+  </h2>
+  
+  <p class="text-lg mb-8 opacity-90">
+    {description}
+  </p>
+  
+  <div class="flex flex-col sm:flex-row gap-4 justify-center">
+    <a
+      href={ctaHref}
+      class={`${
+        variant === 'white'
+          ? 'btn-primary'
+          : variant === 'accent'
+          ? 'btn bg-white text-ink-900 hover:bg-muted-50'
+          : 'btn bg-white text-primary-500 hover:bg-primary-50'
+      }`}
+      {...(ctaHref.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+    >
+      {ctaLabel}
+    </a>
+    
+    {ctaSecondary && (
+      <a
+        href={ctaSecondary.href}
+        class={`${
+          variant === 'white'
+            ? 'btn-secondary'
+            : 'btn border-2 border-white/20 text-white hover:bg-white/10'
+        }`}
+        {...(ctaSecondary.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      >
+        {ctaSecondary.label}
+      </a>
+    )}
+  </div>
+</div>
+
+
+

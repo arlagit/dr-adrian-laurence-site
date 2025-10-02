@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title><![CDATA[Dr Adrian Laurence]]></title>
+    <description><![CDATA[Evidence-based lifestyle medicine for men 35+ who want energy, strength, and long-term health.]]></description>
+    <link>https://dradrianlaurence.com/</link>
+    <atom:link href="https://dradrianlaurence.com//rss.xml" rel="self" type="application/rss+xml"/>
+    <language>en-NZ</language>
+    <lastBuildDate>Sat, 27 Sep 2025 01:59:05 GMT</lastBuildDate>
+    
+    <item>
+      <title><![CDATA[Protein & Muscle After 40: What Actually Moves The Needle]]></title>
+      <description><![CDATA[The science behind protein needs for men over 40, debunking common myths, and practical strategies that actually work.]]></description>
+      <link>https://dradrianlaurence.com//blog/protein-muscle-after-40/</link>
+      <guid isPermaLink="true">https://dradrianlaurence.com//blog/protein-muscle-after-40/</guid>
+      <pubDate>Sat, 10 Feb 2024 00:00:00 GMT</pubDate>
+      <author>Dr Adrian Laurence</author>
+      <category><![CDATA[protein]]></category><category><![CDATA[muscle]]></category><category><![CDATA[nutrition]]></category><category><![CDATA[aging]]></category>
+    </item>
+  
+    <item>
+      <title><![CDATA[Sleep Is The Base Layer: A Practical Guide For Men 35+]]></title>
+      <description><![CDATA[Why sleep is the foundation of everything else in health, and practical strategies to optimize it without becoming obsessed.]]></description>
+      <link>https://dradrianlaurence.com//blog/sleep-is-the-base-layer/</link>
+      <guid isPermaLink="true">https://dradrianlaurence.com//blog/sleep-is-the-base-layer/</guid>
+      <pubDate>Mon, 15 Jan 2024 00:00:00 GMT</pubDate>
+      <author>Dr Adrian Laurence</author>
+      <category><![CDATA[sleep]]></category><category><![CDATA[recovery]]></category><category><![CDATA[men's health]]></category><category><![CDATA[energy]]></category>
+    </item>
+  
+    <item>
+      <title><![CDATA[Zone 2 & Walking: The Underrated Combo For Energy & Longevity]]></title>
+      <description><![CDATA[Why low-intensity cardio is the missing piece for men 35+ who want more energy and better health, without the burnout.]]></description>
+      <link>https://dradrianlaurence.com//blog/zone-2-walking-energy/</link>
+      <guid isPermaLink="true">https://dradrianlaurence.com//blog/zone-2-walking-energy/</guid>
+      <pubDate>Tue, 05 Mar 2024 00:00:00 GMT</pubDate>
+      <author>Dr Adrian Laurence</author>
+      <category><![CDATA[cardio]]></category><category><![CDATA[energy]]></category><category><![CDATA[longevity]]></category><category><![CDATA[zone 2]]></category><category><![CDATA[walking]]></category>
+    </item>
+  
+  </channel>
+</rss>

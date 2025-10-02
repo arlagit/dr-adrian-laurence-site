@@ -1,0 +1,141 @@
+---
+import { NEWSLETTER_URL } from '@/lib/schema';
+
+interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = '' } = Astro.props;
+
+const navigation = [
+  { name: 'About', href: '/about' },
+  { name: 'Services', href: '/services' },
+  { name: 'Articles', href: '/articles' },
+  { name: 'Books', href: '/books' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-muted-100">
+  <nav class="container-custom">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="flex items-center group">
+          <span class="font-display font-semibold text-ink-900 group-hover:text-primary-600 transition-colors text-2xl">
+            Dr Adrian Laurence
+          </span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            class={`font-medium transition-colors duration-200 ${
+              currentPage === item.name.toLowerCase()
+                ? 'text-primary-600'
+                : 'text-muted-600 hover:text-ink-900'
+            }`}
+          >
+            {item.name}
+          </a>
+        ))}
+        
+        <!-- Newsletter CTA -->
+        <a
+          href={NEWSLETTER_URL}
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read the newsletter
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button
+          type="button"
+          class="mobile-menu-button p-2 rounded-lg text-muted-600 hover:text-ink-900 hover:bg-muted-50 transition-colors"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-menu hidden md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-muted-100">
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            class={`block px-3 py-2 rounded-lg font-medium transition-colors duration-200 ${
+              currentPage === item.name.toLowerCase()
+                ? 'text-primary-600 bg-primary-50'
+                : 'text-muted-600 hover:text-ink-900 hover:bg-muted-50'
+            }`}
+          >
+            {item.name}
+          </a>
+        ))}
+        
+        <!-- Mobile Newsletter CTA -->
+        <div class="px-3 py-2">
+          <a
+            href={NEWSLETTER_URL}
+            class="btn-primary w-full text-center"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read the newsletter
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu functionality
+  const mobileMenuButton = document.querySelector('.mobile-menu-button');
+  const mobileMenu = document.querySelector('.mobile-menu');
+
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      
+      mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+      mobileMenu.classList.toggle('hidden');
+      
+      // Update button icon
+      const icon = mobileMenuButton.querySelector('svg path');
+      if (icon) {
+        if (isExpanded) {
+          // Show hamburger
+          icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        } else {
+          // Show X
+          icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+        }
+      }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!mobileMenuButton.contains(event.target as Node) && !mobileMenu.contains(event.target as Node)) {
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+        
+        const icon = mobileMenuButton.querySelector('svg path');
+        if (icon) {
+          icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        }
+      }
+    });
+  }
+</script>

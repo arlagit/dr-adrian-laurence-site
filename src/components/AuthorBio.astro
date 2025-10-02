@@ -1,0 +1,36 @@
+---
+const author = {
+  name: 'Dr Adrian Laurence',
+  title: 'Family Medical and Lifestyle Medicine Doctor',
+  bio: 'I help decode the latest science into evidence based blueprints to feel better, live longer and perform today.',
+  image: '/images/adrian-headshot.webp',
+  credentials: [
+    'MBBS, DTMH, FRNZCGP, AALM'
+  ]
+};
+---
+
+<div class="card p-6">
+  <div class="flex items-start space-x-4">
+    <img
+      src={author.image}
+      alt={author.name}
+      class="w-16 h-16 rounded-full object-cover flex-shrink-0"
+      loading="lazy"
+    />
+    
+    <div class="flex-1">
+      <h3 class="font-display font-semibold text-lg mb-1">{author.name}</h3>
+      <p class="text-primary-600 font-medium mb-2">{author.title}</p>
+      
+      <p class="text-muted-600 mb-3">{author.bio}</p>
+      
+      <div class="space-y-1">
+        {author.credentials.map((cred) => (
+          <p class="text-sm text-muted-500">{cred}</p>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+

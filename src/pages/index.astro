@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+import { generateSEO, generatePersonSchema } from '@/lib/seo';
+import { NEWSLETTER_URL } from '@/lib/schema';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Section from '@/components/Section.astro';
+import ValueProps from '@/components/ValueProps.astro';
+import PostCard from '@/components/PostCard.astro';
+import NewsletterSignup from '@/components/NewsletterSignup.astro';
+import CTABox from '@/components/CTABox.astro';
+
+// Get latest blog posts
+const allPosts = await getCollection('blog');
+const latestPosts = allPosts
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .slice(0, 3);
+
+const seo = generateSEO({
+  title: 'Live longer. Feel better. Perform today.',
+  description: 'I help decode the latest science into evidence based blueprints to feel better, live longer and perform today.',
+});
+
+const personSchema = generatePersonSchema();
+---
+
+<BaseLayout seo={seo}>
+  <!-- Hero Section -->
+  <PageHero
+    title="Live longer. Feel better. Perform today."
+    intro="Hi, I'm Dr Adrian Laurence, Family Medical and Lifestyle Medicine Doctor."
+    tagline="I help decode the latest science into evidence based blueprints to feel better, live longer and perform today."
+    heroImage="/images/adrian-headshot.webp"
+    heroImageAlt="Dr Adrian Laurence"
+    ctaPrimaryHref={NEWSLETTER_URL}
+    ctaPrimaryLabel="Read the newsletter"
+    ctaSecondaryHref="/about"
+    ctaSecondaryLabel="About me"
+  />
+
+  <!-- Value Props -->
+  <Section background="gray">
+    <div class="text-center mb-16">
+      <h2 class="font-display font-semibold text-3xl md:text-4xl mb-6">
+        Why This Approach Works
+      </h2>
+      <p class="text-xl text-muted-600 max-w-3xl mx-auto">
+        Evidence-based strategies for sustainable results without the extremes.
+      </p>
+    </div>
+    <ValueProps />
+  </Section>
+
+  <!-- How I Can Help -->
+  <Section>
+    <div class="text-center mb-16">
+      <h2 class="font-display font-semibold text-3xl md:text-4xl mb-6">
+        How I Can Help
+      </h2>
+      <p class="text-xl text-muted-600 max-w-3xl mx-auto">
+        Three ways to get practical, evidence-based strategies for better health and performance.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Services -->
+      <div class="card-hover p-8 text-center">
+        <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <svg class="w-8 h-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-xl mb-4">Educational Resources</h3>
+        <p class="text-muted-600 mb-6">
+          Learn evidence-based strategies for sleep, nutrition, exercise, and stress management through practical guides and resources.
+        </p>
+        <a href="/services" class="btn-primary">Explore Services</a>
+      </div>
+
+      <!-- Articles -->
+      <div class="card-hover p-8 text-center">
+        <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <svg class="w-8 h-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h3 class="font-display font-semibold text-xl mb-4">Evidence-Based Articles</h3>
+        <p class="text-muted-600 mb-6">
+          Read in-depth articles on sleep, nutrition, exercise, and lifestyle medicine backed by the latest research and clinical experience.
+        </p>
+        <a href="/articles" class="btn-primary">Read Articles</a>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Latest Posts -->
+  <Section background="gray">
+    <div class="text-center mb-16">
+      <h2 class="font-display font-semibold text-3xl md:text-4xl mb-6">
+        Latest Insights
+      </h2>
+      <p class="text-xl text-muted-600 max-w-3xl mx-auto">
+        Practical, evidence-based strategies to optimize your health without the extremes.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {latestPosts.map((post) => (
+        <PostCard post={post} />
+      ))}
+    </div>
+    
+    <div class="text-center mt-12">
+      <a href="/blog" class="btn-secondary">View All Posts</a>
+    </div>
+  </Section>
+
+  <!-- Newsletter Signup -->
+  <Section>
+    <div class="max-w-2xl mx-auto">
+      <NewsletterSignup variant="box" />
+    </div>
+  </Section>
+
+  <!-- Final CTA -->
+  <Section background="primary">
+    <div class="max-w-4xl mx-auto">
+      <CTABox
+        title="Ready to Optimize Your Health?"
+        description="Join thousands getting practical, evidence-based strategies for energy, strength, sleep, and longevity delivered to their inbox every week."
+        ctaHref={NEWSLETTER_URL}
+        ctaLabel="Read the newsletter"
+        variant="accent"
+      />
+    </div>
+  </Section>
+
+  <!-- Person Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+</BaseLayout>

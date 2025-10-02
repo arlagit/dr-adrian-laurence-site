@@ -1,0 +1,100 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  tagline?: string;
+  kicker?: string;
+  heroImage?: string;
+  heroImageAlt?: string;
+  ctaPrimaryHref?: string;
+  ctaPrimaryLabel?: string;
+  ctaSecondaryHref?: string;
+  ctaSecondaryLabel?: string;
+  className?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  intro,
+  tagline,
+  kicker,
+  heroImage,
+  heroImageAlt = 'Dr Adrian Laurence',
+  ctaPrimaryHref,
+  ctaPrimaryLabel,
+  ctaSecondaryHref,
+  ctaSecondaryLabel,
+  className = '',
+} = Astro.props;
+---
+
+<section class={`section-padding bg-gradient-to-b from-bg to-white ${className}`}>
+  <div class="container-custom">
+    <div class="max-w-4xl mx-auto text-center">
+      {eyebrow && (
+        <p class="text-primary-600 font-medium mb-4 animate-fade-in">
+          {eyebrow}
+        </p>
+      )}
+      
+      {heroImage && (
+        <div class="mb-6 animate-fade-in flex justify-center">
+          <img 
+            src={heroImage} 
+            alt={heroImageAlt}
+            class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-primary-100 shadow-lg"
+            loading="eager"
+          />
+        </div>
+      )}
+      
+      <h1 class="mb-6 animate-slide-up">
+        {title}
+      </h1>
+      
+      {intro && (
+        <p class="text-xl md:text-2xl font-semibold text-ink-900 mb-4 animate-slide-up" style="animation-delay: 0.1s">
+          {intro}
+        </p>
+      )}
+      
+      {tagline && (
+        <p class="text-xl md:text-2xl font-semibold text-ink-900 mb-8 animate-slide-up" style="animation-delay: 0.15s">
+          {tagline}
+        </p>
+      )}
+      
+      {kicker && (
+        <p class="text-xl text-muted-600 mb-8 animate-slide-up" style="animation-delay: 0.1s">
+          {kicker}
+        </p>
+      )}
+      
+      {(ctaPrimaryHref || ctaSecondaryHref) && (
+        <div class="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style="animation-delay: 0.2s">
+          {ctaPrimaryHref && ctaPrimaryLabel && (
+            <a
+              href={ctaPrimaryHref}
+              class="btn-primary"
+              {...(ctaPrimaryHref.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            >
+              {ctaPrimaryLabel}
+            </a>
+          )}
+          
+          {ctaSecondaryHref && ctaSecondaryLabel && (
+            <a
+              href={ctaSecondaryHref}
+              class="btn-secondary"
+            >
+              {ctaSecondaryLabel}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+

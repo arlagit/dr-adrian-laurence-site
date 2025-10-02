@@ -1,0 +1,62 @@
+---
+interface ValueProp {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const valueProps: ValueProp[] = [
+  {
+    icon: '🧬',
+    title: 'Evidence-based approach',
+    description: 'All recommendations are grounded in peer-reviewed research and internationally recognized health guidelines.',
+  },
+  {
+    icon: '🎯',
+    title: 'Simple strategies for real life',
+    description: 'Practical tactics that work within the constraints of busy schedules, family commitments, and modern life.',
+  },
+  {
+    icon: '💪',
+    title: 'Health optimization focus',
+    description: 'Specialized approach targeting energy, strength, sleep, and longevity.',
+  },
+  {
+    icon: '📋',
+    title: 'Clear next steps—no fads',
+    description: 'Actionable guidance without extreme diets or unsustainable practices. Tactics are tools, not dogma.',
+  },
+];
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+  {valueProps.map((prop, index) => (
+    <div class="text-center animate-on-scroll" style={`animation-delay: ${index * 0.1}s`}>
+      <div class="text-4xl mb-4">{prop.icon}</div>
+      <h3 class="font-display font-semibold text-lg mb-3">{prop.title}</h3>
+      <p class="text-muted-600">{prop.description}</p>
+    </div>
+  ))}
+</div>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all elements with animate-on-scroll class
+  document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+

@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import { generateSEO } from '@/lib/seo';
+import SimplePage from '@/layouts/SimplePage.astro';
+import PageHero from '@/components/PageHero.astro';
+import Section from '@/components/Section.astro';
+import PostCard from '@/components/PostCard.astro';
+import NewsletterSignup from '@/components/NewsletterSignup.astro';
+
+// Get all blog posts
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+
+const seo = generateSEO({
+  title: 'Articles',
+  description: 'Evidence-based articles and insights on health, lifestyle medicine, sleep, nutrition, and exercise.',
+});
+---
+
+<SimplePage seo={seo} currentPage="articles">
+  <PageHero
+    title="Articles"
+    kicker="Evidence-based insights on health, lifestyle medicine, and practical strategies to optimize your health without extremes."
+  />
+
+  <Section>
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedPosts.map((post, index) => (
+          <PostCard post={post} featured={index === 0} />
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <Section background="gray">
+    <div class="max-w-2xl mx-auto">
+      <NewsletterSignup variant="box" />
+    </div>
+  </Section>
+</SimplePage>

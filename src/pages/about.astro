@@ -1,0 +1,113 @@
+---
+import { generateSEO } from '@/lib/seo';
+import { NEWSLETTER_URL } from '@/lib/schema';
+import SimplePage from '@/layouts/SimplePage.astro';
+import PageHero from '@/components/PageHero.astro';
+import Section from '@/components/Section.astro';
+import CTABox from '@/components/CTABox.astro';
+
+const seo = generateSEO({
+  title: 'About Dr Adrian Laurence',
+  description: 'Learn about Dr Adrian Laurence, a Family Medical and Lifestyle Medicine Doctor with 17+ years experience helping people optimize their health.',
+});
+---
+
+<SimplePage seo={seo} currentPage="about">
+  <PageHero
+    title="About Dr Adrian Laurence"
+    intro="Hi, I'm Dr Adrian Laurence, Family Medical and Lifestyle Medicine Doctor."
+    tagline="I help decode the latest science into evidence based blueprints to feel better, live longer and perform today."
+  />
+
+  <Section>
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+        <div>
+          <img
+            src="/images/adrian-headshot.webp"
+            alt="Dr Adrian Laurence"
+            class="w-full rounded-2xl shadow-soft"
+            loading="lazy"
+          />
+        </div>
+        
+        <div>
+          <h2 class="font-display font-semibold text-3xl mb-6">My Story</h2>
+          <p class="text-lg text-muted-600 mb-6">
+            I'm a Family Medical and Lifestyle Medicine Doctor with over 17 years of experience. My journey into lifestyle medicine began when I noticed a pattern in my practice: people were struggling with the same health challenges, and traditional approaches weren't always enough.
+          </p>
+          <p class="text-lg text-muted-600 mb-6">
+            As a father and runner myself, I understand the challenges of balancing health, family, and career. This personal experience, combined with my clinical expertise, drives my approach to helping people optimize their health without extremes.
+          </p>
+        </div>
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <h2 class="font-display font-semibold text-3xl mb-6">My Approach</h2>
+        
+        <h3 class="font-display font-semibold text-2xl mb-4">Evidence-Based, Not Dogmatic</h3>
+        <p>
+          I believe tactics are tools, not dogma. Every recommendation I make is grounded in peer-reviewed research and internationally recognized health guidelines. But I also recognize that what works in a research study might not work in your real life.
+        </p>
+        
+        <h3 class="font-display font-semibold text-2xl mb-4">Education-Focused</h3>
+        <p>
+          This website provides educational content only. I'm not providing personalized medical advice online, and this content is not a substitute for your own clinician. My goal is to help you understand the science so you can make informed decisions about your health.
+        </p>
+        
+        <h3 class="font-display font-semibold text-2xl mb-4">Practical Implementation</h3>
+        <p>
+          I focus on strategies that work within the constraints of busy schedules, family commitments, and modern life. No extreme diets, no unsustainable practices, no one-size-fits-all solutions.
+        </p>
+        
+        <h3 class="font-display font-semibold text-2xl mb-4">Health Optimization Focus</h3>
+        <p>
+          My focus is on helping people optimize energy, strength, sleep, and longevity. This isn't about vanity metrics—it's about building a foundation for a long, healthy, active life.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <Section background="gray">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="font-display font-semibold text-3xl mb-6">Credentials & Experience</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="card p-6">
+          <h3 class="font-display font-semibold text-xl mb-4">Medical Qualifications</h3>
+          <ul class="space-y-2 text-left">
+            <li>MBBS (Bachelor of Medicine, Bachelor of Surgery)</li>
+            <li>DTMH (Diploma in Tropical Medicine and Hygiene)</li>
+            <li>FRNZCGP (Fellow of the Royal New Zealand College of General Practitioners)</li>
+            <li>AALM (Accredited in Lifestyle Medicine)</li>
+          </ul>
+        </div>
+        
+        <div class="card p-6">
+          <h3 class="font-display font-semibold text-xl mb-4">Professional Experience</h3>
+          <ul class="space-y-2 text-left">
+            <li>17+ years as a General Practitioner</li>
+            <li>Accredited Lifestyle Medicine Doctor</li>
+          </ul>
+        </div>
+      </div>
+      
+      <p class="text-lg text-muted-600 mb-8">
+        I continue to stay current with the latest research in lifestyle medicine, men's health, and preventive care. My clinical practice informs my educational content, and my educational work enhances my clinical practice.
+      </p>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="max-w-4xl mx-auto">
+      <CTABox
+        title="Get Practical Health Strategies"
+        description="Join my weekly newsletter where I break down the latest research and share actionable tactics to optimize your health."
+        ctaHref={NEWSLETTER_URL}
+        ctaLabel="Read the newsletter"
+        variant="white"
+      />
+    </div>
+  </Section>
+</SimplePage>
+

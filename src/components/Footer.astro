@@ -1,0 +1,70 @@
+---
+import { NEWSLETTER_URL } from '@/lib/schema';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-ink-900 text-white">
+  <div class="container-custom section-padding">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center space-x-2 mb-4">
+          <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-lg">AL</span>
+          </div>
+          <span class="font-display font-semibold text-xl">Dr Adrian Laurence</span>
+        </div>
+        <p class="text-muted-300 mb-6 max-w-md">
+          Hi, I'm Dr Adrian Laurence, Family Medical and Lifestyle Medicine Doctor. I help decode the latest science into evidence based blueprints to feel better, live longer and perform today.
+        </p>
+        
+        <!-- Newsletter CTA -->
+        <a
+          href={NEWSLETTER_URL}
+          class="btn-accent inline-flex"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read the newsletter
+        </a>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-display font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-3">
+          <li><a href="/about" class="text-muted-300 hover:text-white transition-colors">About</a></li>
+          <li><a href="/services" class="text-muted-300 hover:text-white transition-colors">Services</a></li>
+          <li><a href="/articles" class="text-muted-300 hover:text-white transition-colors">Articles</a></li>
+          <li><a href="/books" class="text-muted-300 hover:text-white transition-colors">Books</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3 class="font-display font-semibold mb-4">Legal</h3>
+        <ul class="space-y-3">
+          <li><a href="/privacy" class="text-muted-300 hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms" class="text-muted-300 hover:text-white transition-colors">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-muted-700 mt-12 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <!-- Copyright -->
+        <div class="text-muted-300 text-sm">
+          © {currentYear} Dr Adrian Laurence. All rights reserved.
+        </div>
+
+        <!-- Educational Notice -->
+        <div class="text-muted-300 text-sm text-center md:text-right max-w-md">
+          <strong class="text-white">Educational content only.</strong> Not a substitute for your own clinician. 
+          No personalised medical advice is provided on this site.
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

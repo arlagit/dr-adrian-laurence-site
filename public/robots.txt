@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://dradrianlaurence.com/sitemap-index.xml
+Sitemap: https://dradrianlaurence.com/sitemap-0.xml
+
+# Disallow admin areas (if any)
+Disallow: /admin/
+Disallow: /api/
+
+# Allow all other content
+Allow: /blog/
+Allow: /about
+Allow: /services
+Allow: /ama
+Allow: /speaking
+Allow: /media
+Allow: /contact
+
+
+

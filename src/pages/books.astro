@@ -1,0 +1,178 @@
+---
+import { generateSEO } from '@/lib/seo';
+import { NEWSLETTER_URL } from '@/lib/schema';
+import SimplePage from '@/layouts/SimplePage.astro';
+import PageHero from '@/components/PageHero.astro';
+import Section from '@/components/Section.astro';
+import CTABox from '@/components/CTABox.astro';
+
+const seo = generateSEO({
+  title: 'Books',
+  description: 'Books by Dr Adrian Laurence on health, lifestyle medicine, and evidence-based strategies.',
+});
+---
+
+<SimplePage seo={seo} currentPage="books">
+  <PageHero
+    title="Books"
+    kicker="Comprehensive guides on men's health, lifestyle medicine, and evidence-based strategies for sustainable health and performance."
+  />
+
+  <Section>
+    <div class="max-w-4xl mx-auto">
+      <div class="prose prose-lg max-w-none">
+        <h2 class="font-display font-semibold text-3xl mb-6">Coming Soon</h2>
+        
+        <div class="bg-primary-50 border border-primary-200 rounded-2xl p-8 mb-12">
+          <h3 class="font-display font-semibold text-2xl mb-4 text-primary-800">Books in Development</h3>
+          <p class="text-primary-700 mb-6">
+            I'm currently working on several comprehensive books that will dive deep into the topics I cover in my articles and newsletter. These books will provide in-depth, evidence-based guidance for optimizing your health.
+          </p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-xl p-6 border border-primary-100">
+              <h4 class="font-display font-semibold text-lg mb-3">Sleep, Energy & Recovery</h4>
+              <p class="text-muted-600 text-sm mb-4">
+                A comprehensive guide to optimizing sleep quality, building sustainable energy, and enhancing recovery.
+              </p>
+              <div class="flex items-center text-xs text-primary-600">
+                <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Expected 2025
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 border border-primary-100">
+              <h4 class="font-display font-semibold text-lg mb-3">Nutrition & Muscle After 40</h4>
+              <p class="text-muted-600 text-sm mb-4">
+                Evidence-based nutrition strategies for maintaining muscle mass, optimizing protein intake, and supporting long-term health.
+              </p>
+              <div class="flex items-center text-xs text-primary-600">
+                <svg class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                In Development
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="font-display font-semibold text-3xl mb-6">What to Expect</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-semibold text-lg mb-2">Evidence-Based</h3>
+            <p class="text-muted-600 text-sm">
+              Every recommendation backed by peer-reviewed research and clinical experience.
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="font-display font-semibold text-lg mb-2">Practical Implementation</h3>
+            <p class="text-muted-600 text-sm">
+              Actionable strategies that work within the constraints of real life.
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="font-display font-semibold text-lg mb-2">Comprehensive Guides</h3>
+            <p class="text-muted-600 text-sm">
+              In-depth coverage of topics with step-by-step implementation plans.
+            </p>
+          </div>
+        </div>
+
+        <h2 class="font-display font-semibold text-3xl mb-6">Stay Updated</h2>
+        
+        <div class="bg-muted-50 rounded-2xl p-8 mb-8">
+          <h3 class="font-display font-semibold text-xl mb-4">Get Early Access</h3>
+          <p class="text-muted-600 mb-6">
+            Subscribe to my newsletter to be the first to know when these books are available. Newsletter subscribers will receive:
+          </p>
+          
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-muted-600">Early access and exclusive previews</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-muted-600">Special launch pricing and bonuses</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-muted-600">Behind-the-scenes insights into the writing process</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-primary-500 mr-3 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-muted-600">Regular updates on publication timeline</span>
+            </li>
+          </ul>
+        </div>
+
+        <h2 class="font-display font-semibold text-3xl mb-6">Topics Covered</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="card p-6">
+            <h3 class="font-display font-semibold text-xl mb-4">Health & Performance</h3>
+            <ul class="space-y-2 text-muted-600">
+              <li>• Sleep optimization and recovery</li>
+              <li>• Energy management and fatigue</li>
+              <li>• Stress resilience and mental health</li>
+              <li>• Hormonal health and aging</li>
+              <li>• Cardiovascular health and longevity</li>
+            </ul>
+          </div>
+          
+          <div class="card p-6">
+            <h3 class="font-display font-semibold text-xl mb-4">Lifestyle Medicine</h3>
+            <ul class="space-y-2 text-muted-600">
+              <li>• Nutrition and protein strategies</li>
+              <li>• Exercise prescription and programming</li>
+              <li>• Weight management and body composition</li>
+              <li>• Metabolic health and insulin sensitivity</li>
+              <li>• Supplementation and optimization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section background="gray">
+    <div class="max-w-4xl mx-auto">
+      <CTABox
+        title="Get Early Access to My Books"
+        description="Subscribe to my newsletter for exclusive updates, early access, and special launch offers when my books become available."
+        ctaHref={NEWSLETTER_URL}
+        ctaLabel="Read the newsletter"
+        variant="white"
+      />
+    </div>
+  </Section>
+</SimplePage>
+

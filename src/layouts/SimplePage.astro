@@ -1,0 +1,21 @@
+---
+import type { SEOProps } from '@/lib/seo';
+import { generateSEO } from '@/lib/seo';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  seo: SEOProps;
+  currentPage?: string;
+}
+
+const { seo, currentPage } = Astro.props;
+
+const seoData = generateSEO(seo);
+---
+
+<BaseLayout seo={seoData} currentPage={currentPage}>
+  <slot />
+</BaseLayout>
+
+
+
