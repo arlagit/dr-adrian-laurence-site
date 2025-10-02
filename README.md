@@ -11,8 +11,8 @@ A fast, production-ready personal website for Dr Adrian Laurence, Family Medical
 ### Installation
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd dr-adrian-site
+git clone https://github.com/arlagit/dr-adrian-laurence-site.git
+cd dr-adrian-laurence-site
 
 # Install dependencies
 npm install
@@ -74,8 +74,8 @@ src/
 - **Background**: #FBFCFE (off-white)
 
 ### Typography
-- **Display**: Inter Tight (headings)
-- **Body**: Inter (body text)
+- **Display**: Lato (headings)
+- **Body**: Lato (body text)
 
 ### Components
 - Rounded corners (rounded-2xl)
@@ -221,4 +221,3 @@ For questions about this website or its content:
 ## 📄 License
 
 This project is proprietary and confidential. All rights reserved.
-
