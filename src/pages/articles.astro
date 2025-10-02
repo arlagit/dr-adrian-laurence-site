@@ -7,9 +7,8 @@ import Section from '@/components/Section.astro';
 import PostCard from '@/components/PostCard.astro';
 import NewsletterSignup from '@/components/NewsletterSignup.astro';
 
-// Get all blog posts
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+// No blog posts available
+const sortedPosts = [];
 
 const seo = generateSEO({
   title: 'Articles',

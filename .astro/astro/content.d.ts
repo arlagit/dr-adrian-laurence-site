@@ -151,30 +151,7 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"blog": {
-"protein-muscle-after-40.mdx": {
-	id: "protein-muscle-after-40.mdx";
-  slug: "protein-muscle-after-40";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"sleep-is-the-base-layer.mdx": {
-	id: "sleep-is-the-base-layer.mdx";
-  slug: "sleep-is-the-base-layer";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"zone-2-walking-energy.mdx": {
-	id: "zone-2-walking-energy.mdx";
-  slug: "zone-2-walking-energy";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-};
-"media": {
+		"media": {
 "health-habits-interview.mdx": {
 	id: "health-habits-interview.mdx";
   slug: "health-habits-interview";

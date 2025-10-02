@@ -1,41 +1,30 @@
 ---
-import { getCollection } from 'astro:content';
 import { generateSEO } from '@/lib/seo';
-import { getRelatedPosts } from '@/lib/schema';
 import BlogLayout from '@/layouts/BlogLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  // No blog posts available
+  return [];
 }
 
-const { post } = Astro.props;
-const { Content } = await post.render();
-
-// Get related posts
-const allPosts = await getCollection('blog');
-const relatedPosts = getRelatedPosts(post, allPosts);
-
 const seo = generateSEO({
-  title: post.data.title,
-  description: post.data.summary,
-  canonical: `/blog/${post.slug}`,
-  noIndex: post.data.noIndex || false,
-  ogImage: post.data.heroImage,
-  ogType: 'article',
-  publishedTime: post.data.publishedAt.toISOString(),
-  modifiedTime: post.data.updatedAt?.toISOString(),
-  author: 'Dr Adrian Laurence',
-  tags: post.data.tags || [],
+  title: 'Article Not Found',
+  description: 'The requested article could not be found.',
+  canonical: '/blog',
 });
+
 ---
 
-<BlogLayout seo={seo} post={post} relatedPosts={relatedPosts}>
-  <Content />
+<BlogLayout seo={seo} currentPage="blog">
+  <article class="max-w-4xl mx-auto text-center py-16">
+    <h1 class="font-display font-semibold text-4xl md:text-5xl text-ink-900 mb-4">
+      Article Not Found
+    </h1>
+    <p class="text-lg text-muted-600 mb-8">
+      The requested article could not be found.
+    </p>
+    <a href="/blog" class="btn-primary">
+      Back to Articles
+    </a>
+  </article>
 </BlogLayout>
-
-
-

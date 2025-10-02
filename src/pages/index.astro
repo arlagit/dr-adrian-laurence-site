@@ -10,11 +10,8 @@ import PostCard from '@/components/PostCard.astro';
 import NewsletterSignup from '@/components/NewsletterSignup.astro';
 import CTABox from '@/components/CTABox.astro';
 
-// Get latest blog posts
-const allPosts = await getCollection('blog');
-const latestPosts = allPosts
-  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
-  .slice(0, 3);
+// No blog posts available
+const latestPosts = [];
 
 const seo = generateSEO({
   title: 'Live longer. Feel better. Perform today.',
