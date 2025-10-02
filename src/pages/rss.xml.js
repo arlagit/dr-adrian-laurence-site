@@ -1,4 +1,3 @@
-import { getCollection } from 'astro:content';
 import { siteConfig } from '../lib/site-config';
 
 export async function GET(context) {

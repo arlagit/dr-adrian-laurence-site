@@ -70,15 +70,18 @@ export function sortByDate<T extends { publishedAt?: Date; date?: Date }>(
 }
 
 export function getRelatedPosts(
-  currentPost: CollectionEntry<'blog'>,
-  allPosts: CollectionEntry<'blog'>[],
+  currentPost: any,
+  allPosts: any[],
   limit = 3
-): CollectionEntry<'blog'>[] {
+): any[] {
+  if (!currentPost || !allPosts || allPosts.length === 0) {
+    return [];
+  }
   return allPosts
     .filter(post => post.slug !== currentPost.slug)
     .map(post => ({
       post,
-      score: calculateRelevanceScore(currentPost.data.tags || [], post.data.tags || [])
+      score: calculateRelevanceScore(currentPost.data?.tags || [], post.data?.tags || [])
     }))
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)

@@ -1,8 +1,7 @@
 ---
-import type { SEOProps } from '@/lib/seo';
-import type { CollectionEntry } from 'astro:content';
-import { generateSEO, generateBlogPostSchema } from '@/lib/seo';
-import { formatDate } from '@/lib/schema';
+import { generateSEO } from '@/lib/seo';
+import { generateBlogPostSchema } from '@/lib/schema';
+import { formatDate } from '@/lib/utils';
 import BaseLayout from './BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
@@ -10,22 +9,23 @@ import AuthorBio from '@/components/AuthorBio.astro';
 
 interface Props {
   seo: SEOProps;
-  post: CollectionEntry<'blog'>;
-  relatedPosts?: CollectionEntry<'blog'>[];
+  post?: any;
+  relatedPosts?: any[];
+  currentPage?: string;
 }
 
-const { seo, post, relatedPosts = [] } = Astro.props;
+const { seo, post = null, relatedPosts = [], currentPage } = Astro.props;
 
 const blogSeo = generateSEO({
   ...seo,
   ogType: 'article',
-  publishedTime: post.data.publishedAt.toISOString(),
-  modifiedTime: post.data.updatedAt?.toISOString(),
+  publishedTime: post?.data?.publishedAt?.toISOString() || new Date().toISOString(),
+  modifiedTime: post?.data?.updatedAt?.toISOString(),
   author: 'Dr Adrian Laurence',
-  tags: post.data.tags || [],
+  tags: post?.data?.tags || [],
 });
 
-const blogSchema = generateBlogPostSchema({
+const blogSchema = post ? generateBlogPostSchema({
   title: post.data.title,
   description: post.data.summary,
   url: `/blog/${post.slug}`,
@@ -33,147 +33,126 @@ const blogSchema = generateBlogPostSchema({
   modifiedTime: post.data.updatedAt?.toISOString(),
   author: 'Dr Adrian Laurence',
   tags: post.data.tags || [],
-});
+}) : null;
 ---
 
-<BaseLayout seo={blogSeo} currentPage="blog">
-  <Header currentPage="blog" />
+<BaseLayout seo={blogSeo} currentPage={currentPage || "blog"}>
+  <Header currentPage={currentPage || "blog"} />
   
-  <article class="section-padding">
-    <div class="container-custom max-w-4xl">
-      <!-- Article Header -->
-      <header class="mb-12">
-        <div class="flex items-center gap-4 text-sm text-muted-500 mb-6">
-          <time datetime={post.data.publishedAt.toISOString()}>
-            {formatDate(post.data.publishedAt)}
-          </time>
-          {post.data.updatedAt && (
-            <>
-              <span>•</span>
-              <span>Updated {formatDate(post.data.updatedAt)}</span>
-            </>
+  {post ? (
+    <article class="section-padding">
+      <div class="container-custom max-w-4xl">
+        <!-- Article Header -->
+        <header class="mb-12">
+          <div class="flex items-center gap-4 text-sm text-muted-500 mb-6">
+            <time datetime={post.data.publishedAt.toISOString()}>
+              {formatDate(post.data.publishedAt)}
+            </time>
+            {post.data.updatedAt && (
+              <>
+                <span>•</span>
+                <span>Updated {formatDate(post.data.updatedAt)}</span>
+              </>
+            )}
+            <span>•</span>
+            <span>{post.data.readingTime} min read</span>
+          </div>
+          
+          <h1 class="font-display font-semibold text-3xl md:text-4xl lg:text-5xl mb-6">
+            {post.data.title}
+          </h1>
+          
+          {post.data.summary && (
+            <p class="text-xl text-muted-600 leading-relaxed">
+              {post.data.summary}
+            </p>
           )}
-          <span>•</span>
-          <span>{post.data.readingTime} min read</span>
-        </div>
+          
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-6">
+              {post.data.tags.map((tag) => (
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-50 text-primary-700">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </header>
         
-        <h1 class="font-display font-semibold text-3xl md:text-4xl lg:text-5xl mb-6">
-          {post.data.title}
-        </h1>
-        
-        {post.data.summary && (
-          <p class="text-xl text-muted-600 leading-relaxed">
-            {post.data.summary}
-          </p>
-        )}
-        
-        {post.data.tags && post.data.tags.length > 0 && (
-          <div class="flex flex-wrap gap-2 mt-6">
-            {post.data.tags.map((tag) => (
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-50 text-primary-700">
-                {tag}
-              </span>
-            ))}
+        <!-- Hero Image -->
+        {post.data.heroImage && (
+          <div class="aspect-video overflow-hidden rounded-2xl mb-12">
+            <img
+              src={post.data.heroImage}
+              alt={post.data.title}
+              class="w-full h-full object-cover"
+            />
           </div>
         )}
-      </header>
-      
-      <!-- Hero Image -->
-      {post.data.heroImage && (
-        <div class="aspect-video overflow-hidden rounded-2xl mb-12">
-          <img
-            src={post.data.heroImage}
-            alt={post.data.title}
-            class="w-full h-full object-cover"
-          />
+        
+        <!-- Article Content -->
+        <div class="prose prose-lg max-w-none">
+          <slot />
         </div>
-      )}
-      
-      <!-- Article Content -->
-      <div class="prose prose-lg max-w-none">
+        
+        <!-- CTA -->
+        {post.data.cta && (
+          <div class="mt-12 p-6 bg-primary-50 rounded-2xl">
+            <p class="text-lg font-medium mb-4">{post.data.cta}</p>
+            <a href="https://dradrianlaurence.substack.com" class="btn-primary" target="_blank" rel="noopener noreferrer">
+              Read the newsletter
+            </a>
+          </div>
+        )}
+      </div>
+    </article>
+  ) : (
+    <div class="section-padding">
+      <div class="container-custom max-w-4xl">
         <slot />
       </div>
-      
-      <!-- CTA (if specified in frontmatter) -->
-      {post.data.cta && (
-        <div class="mt-12 p-6 bg-primary-50 rounded-2xl">
-          <p class="text-lg font-medium mb-4">{post.data.cta}</p>
-          <a
-            href="https://dradrianlaurence.substack.com/"
-            class="btn-primary"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read the newsletter
-          </a>
-        </div>
-      )}
     </div>
-  </article>
-  
-  <!-- Author Bio -->
-  <section class="bg-muted-50 section-padding">
-    <div class="container-custom max-w-4xl">
-      <AuthorBio />
-    </div>
-  </section>
-  
+  )}
+
   <!-- Related Posts -->
-  {relatedPosts.length > 0 && (
-    <section class="section-padding">
-      <div class="container-custom">
-        <h2 class="font-display font-semibold text-3xl text-center mb-12">Related Articles</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  {relatedPosts && relatedPosts.length > 0 && (
+    <section class="py-16 bg-muted-50">
+      <div class="container-custom max-w-6xl">
+        <h2 class="font-display font-semibold text-2xl md:text-3xl mb-8">Related Articles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {relatedPosts.map((relatedPost) => (
-            <div class="card-hover">
-              <div class="p-6">
-                <div class="flex items-center gap-4 text-sm text-muted-500 mb-3">
-                  <time datetime={relatedPost.data.publishedAt.toISOString()}>
-                    {formatDate(relatedPost.data.publishedAt)}
-                  </time>
-                  <span>•</span>
-                  <span>{relatedPost.data.readingTime} min read</span>
-                </div>
-                
-                <h3 class="font-display font-semibold text-xl mb-3">
-                  <a href={`/blog/${relatedPost.slug}`} class="hover:text-primary-600 transition-colors">
-                    {relatedPost.data.title}
-                  </a>
-                </h3>
-                
-                <p class="text-muted-600">
-                  {relatedPost.data.summary}
-                </p>
+            <article class="card p-6 hover:shadow-lg transition-shadow">
+              <div class="flex items-center gap-3 text-sm text-muted-500 mb-3">
+                <time datetime={relatedPost.data.publishedAt.toISOString()}>
+                  {formatDate(relatedPost.data.publishedAt)}
+                </time>
+                <span>•</span>
+                <span>{relatedPost.data.readingTime} min read</span>
               </div>
-            </div>
+              <h3 class="font-display font-semibold text-xl mb-3">
+                <a href={`/blog/${relatedPost.slug}`} class="hover:text-primary-600 transition-colors">
+                  {relatedPost.data.title}
+                </a>
+              </h3>
+              <p class="text-muted-600 mb-4">
+                {relatedPost.data.summary}
+              </p>
+              <a href={`/blog/${relatedPost.slug}`} class="text-primary-600 font-medium hover:text-primary-700 transition-colors">
+                Read more →
+              </a>
+            </article>
           ))}
         </div>
       </div>
     </section>
   )}
-  
-  <!-- Newsletter Signup -->
-  <section class="bg-primary-500 section-padding">
-    <div class="container-custom max-w-2xl text-center">
-      <h2 class="font-display font-semibold text-3xl text-white mb-6">
-        Get More Insights Like This
-      </h2>
-      <p class="text-xl text-primary-100 mb-8">
-        Join thousands of men getting practical, evidence-based health strategies every week.
-      </p>
-      <a
-        href="https://dradrianlaurence.substack.com/"
-        class="btn bg-white text-primary-500 hover:bg-primary-50"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Read the newsletter
-      </a>
-    </div>
-  </section>
-  
+
+  <!-- Author Bio -->
+  <AuthorBio />
+
   <Footer />
-  
-  <!-- Blog Post Schema -->
-  <script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+
+  {blogSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(blogSchema)} />
+  )}
 </BaseLayout>
