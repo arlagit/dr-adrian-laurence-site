@@ -1,4 +1,3 @@
-import type { CollectionEntry } from 'astro:content';
 
 export interface BlogPost {
   title: string;
