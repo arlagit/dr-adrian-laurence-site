@@ -82,7 +82,7 @@ export function generatePersonSchema() {
     description: 'Family Medical and Lifestyle Medicine Doctor helping people with evidence-based lifestyle medicine.',
     url: siteConfig.site,
     sameAs: [
-      'https://dradrianlaurence.substack.com/',
+      'https://dradrianlaurence.substack.com/welcome',
       'https://twitter.com/dradrianlaurence',
     ],
     knowsAbout: [

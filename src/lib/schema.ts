@@ -94,7 +94,7 @@ function calculateRelevanceScore(tags1: string[], tags2: string[]): number {
   return intersection.length / Math.max(tags1.length, tags2.length);
 }
 
-export const NEWSLETTER_URL = 'https://dradrianlaurence.substack.com/';
+export const NEWSLETTER_URL = 'https://dradrianlaurence.substack.com/welcome';
 
 export const CONTACT_EMAIL = 'hello@dradrianlaurence.com';
 

@@ -5,12 +5,12 @@ export const siteConfig = {
   author: 'Dr Adrian Laurence',
   twitter: '@dradrianlaurence',
   email: 'hello@dradrianlaurence.com',
-  newsletterUrl: 'https://dradrianlaurence.substack.com/',
+  newsletterUrl: 'https://dradrianlaurence.substack.com/welcome',
   social: {
     twitter: 'https://twitter.com/dradrianlaurence',
     linkedin: 'https://linkedin.com/in/dradrianlaurence',
     youtube: 'https://youtube.com/@dradrianlaurence',
-    substack: 'https://dradrianlaurence.substack.com/',
+    substack: 'https://dradrianlaurence.substack.com/welcome',
   },
 } as const;
 
